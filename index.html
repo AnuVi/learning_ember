@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head> 
+	<meta charset="utf-8">
+	<title>Learning Ember</title>
+	<script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="handlebars.js"></script>
+	<script type="text/javascript" src="ember.js"></script>
+	<script>
+	// Emberi käivitamine
+		window.App = Ember.Application.create();
+	//"Klassi" loomine
+	//1) var Bookmark = Ember.Object.extend();
+
+    // meetodi lisamine
+    var Bookmark = Ember.Object.extend({
+    		to_link: function(){
+    			return  '<a href="'+ this.get("url") + '">'
+    			+ this.get("name")
+    			+ '</a>';
+    		}
+
+    	});
+
+    //kõik "klassiga" seotud meetodid tuleb paigutada enne uue instansi loomist, 
+
+    Bookmark.reopen({
+    	formatted: function(){
+    		return this.get("name") + " - " + this.get("url");
+    	}
+    });
+	
+	// uue instantsi-eksemplari loomine
+	var bookmark = Bookmark.create({ name:"Neti" , url:"http://www.neti.ee"})
+
+
+	/* Konsoolis trüki Bookmark ja bookmark
+	   Omaduste vaatamiseks: bookmark.get('name')
+	   Omaduste muutmiseks: bookmark.set("url", "www.neti.ee")
+	   meetodi vaatamiseks: bookmark.to_link()
+	   lingi kuvamine ekraanil: document.write(bookmark.to_link())
+
+	*/
+	</script>
+
+</head>
+<body>
+	<script type="text/x-handlebars" data-tamplate-name="index">
+	<h1>  Welcome ! </h1>
+	</script>
+
+     
+</body>
+</html>
